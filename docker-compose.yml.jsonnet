@@ -20,17 +20,20 @@ ddb.Compose() {
 		            DOCUMENTROOT: web_workdir + '/web',
 		            ENVIRONMENT: environment,
 		        },
-                volumes: [
+                [if ddb.env.is('k8s') then "volumes"]: [
+                    "drupal-public:" + web_workdir + '/web/upload',
+                ],
+                [if !ddb.env.is('k8s') then "volumes"]: [
                     ddb.path.project + "/app:" + web_workdir + ":cached"
-                ]
+                ],
             },
 		"database": ddb.Image("mariadb:10.4.13")
 		    + {
 		        environment: {
 		            MYSQL_ROOT_PASSWORD: 'mysqlroot',
-                    MYSQL_DATABASE: 'gfi',
+                    MYSQL_DATABASE: 'mysqluser',
                     MYSQL_USER: 'mysqlusr',
-                    MYSQL_PASSWORD: 'gfi',
+                    MYSQL_PASSWORD: 'mysqluser',
 		        }
             },
 		"php-fpm": ddb.Build("php")
@@ -43,9 +46,13 @@ ddb.Compose() {
 		            DRUSH_VERSION: 9,
                     XDEBUG: 0,
 		        },
-                volumes: [
+                [if ddb.env.is('k8s') then "volumes"]: [
+                    "drupal-private:" + web_workdir + '/private',
+                    "drupal-public:" + web_workdir + '/web/upload',
+                ],
+                [if !ddb.env.is('k8s') then "volumes"]: [
                     ddb.path.project + "/app:" + web_workdir + ":cached"
-                ]
+                ],
             },
 		"redis": ddb.Build("redis"),
 //		"solr": ddb.Build("solr:7.3-slim")
@@ -58,7 +65,7 @@ ddb.Compose() {
             + (if ddb.env.is('dev') then ddb.VirtualHost("80", domain, "www") else {})
 		    + {
 		        links: ['nginx:web-backed'],
-		        [if ddb.env.is('k8s') then "ports"]: ["80:80"],
+//		        [if ddb.env.is('k8s') then "ports"]: ["80:80"],
             },
 	}
 }

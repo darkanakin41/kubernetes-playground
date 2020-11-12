@@ -5,6 +5,10 @@ docker:
   directory: .k8s/docker
   reverse-proxy:
     type: none
+  compose:
+    file_version: 3
+    service_init: false
+    service_context_root: true
 
 fixuid:
   disabled: true

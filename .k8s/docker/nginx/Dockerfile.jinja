@@ -1,7 +1,12 @@
 FROM nginx:stable-perl
 
-ADD ./config/conf.d/default.conf /etc/nginx/conf.d/default.conf
-ADD ./config/sites/default.conf /etc/nginx/sites-available/default.conf
-ADD ./config/nginx.conf /etc/nginx/nginx.conf
+ADD ./{% if docker.compose.context_root %}.k8s/docker/nginx/{% endif %}config/conf.d/default.conf /etc/nginx/conf.d/default.conf
+ADD ./{% if docker.compose.context_root %}.k8s/docker/nginx/{% endif %}config/sites/default.conf /etc/nginx/sites-available/default.conf
+ADD ./{% if docker.compose.context_root %}.k8s/docker/nginx/{% endif %}config/nginx.conf /etc/nginx/nginx.conf
 #ADD ./config/.htpasswd /etc/nginx/.htpasswd
+
+{% if core.env.current == 'k8s' %}
+COPY ./app /var/www/html
+{% endif %}
+
 EXPOSE 80

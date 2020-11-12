@@ -1,5 +1,5 @@
 FROM redis:6.0-alpine
 
-COPY ./config/redis.conf /usr/local/etc/redis/redis.conf
+COPY ./{% if docker.compose.context_root %}.k8s/docker/redis/{% endif %}config/redis.conf /usr/local/etc/redis/redis.conf
 
 CMD [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
