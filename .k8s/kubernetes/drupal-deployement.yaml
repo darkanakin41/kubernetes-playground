@@ -26,31 +26,33 @@ spec:
               value: k8s
             - name: SERVERNAME
               value: domain
-          image: nginx
+          image: darkanakin41/kubernetes-playground-nginx
           name: nginx
           ports:
             - containerPort: 80
-          resources: {}
+          resources: { }
           volumeMounts:
-            - mountPath: /var/www/html
-              name: drupal-claim0
+            - mountPath: /var/www/html/web/upload
+              name: drupal-public
         - env:
             - name: DRUSH_VERSION
               value: "9"
             - name: XDEBUG
               value: "0"
-          image: php-fpm
+          image: darkanakin41/kubernetes-playground-php
           name: php-fpm
           resources: { }
           volumeMounts:
-            - mountPath: /var/www/html
-              name: drupal-claim0
-        - image: redis
+            - mountPath: /var/www/html/private
+              name: drupal-private
+            - mountPath: /var/www/html/web/upload
+              name: drupal-public
+        - image: darkanakin41/kubernetes-playground-redis
           name: redis
           resources: { }
       restartPolicy: Always
       volumes:
-        - name: drupal-claim0
+        - name: drupal-public
           persistentVolumeClaim:
-            claimName: drupal-claim0
-status: {}
+            claimName: drupal-public
+status: { }

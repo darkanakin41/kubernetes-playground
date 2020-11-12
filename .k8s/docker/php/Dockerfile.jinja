@@ -1,8 +1,8 @@
 # Pull base image.
 FROM php:7.3-fpm
 
-COPY ./{% if docker.compose.context_root %}.k8s/docker/php/{% endif %}config/php/php.ini /usr/local/etc/php/
-COPY ./{% if docker.compose.context_root %}.k8s/docker/php/{% endif %}config/php-fpm/www.conf /usr/local/etc/php-fpm.d/www.conf
+COPY ./{% if docker.compose.service_context_root %}.k8s/docker/php/{% endif %}config/php/php.ini /usr/local/etc/php/
+COPY ./{% if docker.compose.service_context_root %}.k8s/docker/php/{% endif %}config/php-fpm/www.conf /usr/local/etc/php-fpm.d/www.conf
 
 RUN apt-get clean && apt-get update && apt-get install --fix-missing -y \
     wget \

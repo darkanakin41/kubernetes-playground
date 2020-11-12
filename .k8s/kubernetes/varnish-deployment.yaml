@@ -18,10 +18,8 @@ spec:
         io.kompose.service: varnish
     spec:
       containers:
-      - image: varnish
+      - image: darkanakin41/kubernetes-playground-varnish
         name: varnish
-        ports:
-        - containerPort: 80
         resources: {}
       restartPolicy: Always
 status: {}

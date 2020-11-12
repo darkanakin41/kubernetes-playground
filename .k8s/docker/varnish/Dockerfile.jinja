@@ -1,6 +1,6 @@
 FROM varnish:6.0
 
-ADD ./{% if docker.compose.context_root %}.k8s/docker/varnish/{% endif %}config/default.vcl /etc/varnish/default.vcl
-ADD ./{% if docker.compose.context_root %}.k8s/docker/varnish/{% endif %}core/docker-varnish-entrypoint /usr/local/bin/
+ADD ./{% if docker.compose.service_context_root %}.k8s/docker/varnish/{% endif %}config/default.vcl /etc/varnish/default.vcl
+ADD ./{% if docker.compose.service_context_root %}.k8s/docker/varnish/{% endif %}core/docker-varnish-entrypoint /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/docker-varnish-entrypoint
