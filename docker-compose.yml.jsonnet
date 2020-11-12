@@ -62,7 +62,7 @@ ddb.Compose() {
 //                ]
 //            },
 		"varnish": ddb.Build("varnish") + ddb.Image('darkanakin41/kubernetes-playground-varnish')
-            + (if ddb.env.is('dev') then ddb.VirtualHost("80", domain, "www") else {})
+            + (if ddb.env.is('k8s') then ddb.VirtualHost("80", domain, "www") else {})
 		    + {
 		        links: ['nginx:web-backed'],
 //		        [if ddb.env.is('k8s') then "ports"]: ["80:80"],

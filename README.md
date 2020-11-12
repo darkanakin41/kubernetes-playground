@@ -9,17 +9,20 @@ sudo apt-get update
 sudo apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
 sudo usermod -aG docker $USER
 ```
+
 2. [Install kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 ```shell script
 curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
 chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
 ```
+
 3. [Install minikube](https://minikube.sigs.k8s.io/docs/start/)
 ```shell script
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
 sudo dpkg -i minikube_latest_amd64.deb
 ```
+
 4. Create a basic cluster: 
 ```shell script
 minikube start
