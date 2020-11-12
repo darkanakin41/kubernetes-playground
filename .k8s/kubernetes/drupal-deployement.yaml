@@ -58,4 +58,7 @@ spec:
         - name: drupal-public
           persistentVolumeClaim:
             claimName: drupal-public
+        - name: drupal-private
+          persistentVolumeClaim:
+            claimName: drupal-private
 status: { }
