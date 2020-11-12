@@ -6,7 +6,7 @@ metadata:
     kompose.version: 1.16.0 (0c01309)
   creationTimestamp: null
   labels:
-    io.kompose.service: database
+    name: database
   name: database
 spec:
   replicas: 1
@@ -18,7 +18,7 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: database
+        name: database
     spec:
       containers:
       - env:
