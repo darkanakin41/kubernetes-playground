@@ -7,6 +7,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      # Install
+      - name: "DDB: Install"
+        run: |
+          mkdir -p $HOME/bin
+          curl -o $HOME/bin/ddb -L https://github.com/gfi-centre-ouest/docker-devbox-ddb/releases/latest/download/ddb
+          echo "::add-path::$HOME/bin"
+          chmod +x $HOME/bin/ddb
+
+      - name: "DDB: Base configuration"
+        run: |
+          mkdir ${HOME}/.docker-devbox
+          cat <<EOT >> ${HOME}/.docker-devbox/ddb.yaml
+          core:
+            env:
+              current: k8s
+          docker:
+            cache_from_image: true
+          EOT
+
       - uses: actions/checkout@v1
-      - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+
+      - name: "DDB: Project configuration"
+        run: ddb configure
+
+      - name: "Docker: Pull, Build and Push"
+        run: |
+          $(ddb activate)
+          docker-compose pull --ignore-pull-failures
+          docker-compose build
+          docker-compose push
