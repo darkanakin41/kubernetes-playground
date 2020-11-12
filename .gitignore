@@ -1,3 +1,17 @@
 ###> darkanakin41/project-generator
 .idea
 ###< darkanakin41/project-generator
+###> gfi-centre-ouest/docker-devbox ###
+/*ddb.local.*
+/.bash_enter
+/.bash_leave
+/docker-compose.yml
+/.certs/kubernetes-playground.test.key
+/.certs/kubernetes-playground.test.crt
+/.certs/.signer.crt
+/.k8s/docker/php/fixuid.tar.gz
+/.k8s/docker/php/Dockerfile
+/.k8s/docker/varnish/Dockerfile
+/.k8s/docker/redis/Dockerfile
+/.k8s/docker/nginx/Dockerfile
+###< gfi-centre-ouest/docker-devbox ###

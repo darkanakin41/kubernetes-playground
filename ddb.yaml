@@ -1,0 +1,8 @@
+core:
+  env:
+    available: [k8s, prod, stage, ci, dev]
+  domain:
+    sub: kubernetes-playground
+
+docker:
+  directory: .k8s/docker

@@ -1,0 +1,10 @@
+certs:
+  disabled: true
+
+docker:
+  directory: .k8s/docker
+  reverse-proxy:
+    type: none
+
+fixuid:
+  disabled: true
