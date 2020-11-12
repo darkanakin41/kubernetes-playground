@@ -30,9 +30,11 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: "DDB: Project configuration"
+        shell: bash
         run: ddb configure
 
       - name: "Docker: Pull, Build and Push"
+        shell: bash
         run: |
           $(ddb activate)
           docker-compose pull --ignore-pull-failures
