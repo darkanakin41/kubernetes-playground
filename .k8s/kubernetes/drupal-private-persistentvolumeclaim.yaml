@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   creationTimestamp: null
   labels:
-    io.kompose.service: drupal-private
+    name: drupal-private
   name: drupal-private
 spec:
   accessModes:
