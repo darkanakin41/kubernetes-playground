@@ -6,3 +6,9 @@ core:
 
 docker:
   directory: .k8s/docker
+
+app:
+  varnish:
+    backend:
+      host: nginx
+      port: 80

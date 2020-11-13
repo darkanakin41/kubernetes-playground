@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Ingress
+metadata:
+  name: varnish-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /varnish
+            backend:
+              serviceName: varnish
+              servicePort: 80

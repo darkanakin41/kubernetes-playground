@@ -25,7 +25,8 @@ sudo dpkg -i minikube_latest_amd64.deb
 
 4. Create a basic cluster: 
 ```shell script
-minikube start
+minikube start # Start the cluster
+minikube addons enable ingress # Enable Ingress
 ```
 
 5. Load project configuration:
@@ -33,6 +34,9 @@ minikube start
 # Apply persistent volumes configuration
 kubectl apply -f https://raw.githubusercontent.com/darkanakin41/kubernetes-playground/master/.k8s/kubernetes/drupal-private-persistentvolumeclaim.yaml
 kubectl apply -f https://raw.githubusercontent.com/darkanakin41/kubernetes-playground/master/.k8s/kubernetes/drupal-public-persistentvolumeclaim.yaml
+
+# Apply config map configuration
+kubectl apply -f https://raw.githubusercontent.com/darkanakin41/kubernetes-playground/master/.k8s/kubernetes/drupal-configmap.yaml
 
 # Apply deployment configuration
 kubectl apply -f https://raw.githubusercontent.com/darkanakin41/kubernetes-playground/master/.k8s/kubernetes/database-deployment.yaml
@@ -42,4 +46,8 @@ kubectl apply -f https://raw.githubusercontent.com/darkanakin41/kubernetes-playg
 # Apply service configuration
 kubectl apply -f https://raw.githubusercontent.com/darkanakin41/kubernetes-playground/master/.k8s/kubernetes/drupal-service.yaml
 kubectl apply -f https://raw.githubusercontent.com/darkanakin41/kubernetes-playground/master/.k8s/kubernetes/varnish-service.yaml
+
+# Apply ingress configuration
+kubectl apply -f https://raw.githubusercontent.com/darkanakin41/kubernetes-playground/master/.k8s/kubernetes/drupal-ingress.yaml
+kubectl apply -f https://raw.githubusercontent.com/darkanakin41/kubernetes-playground/master/.k8s/kubernetes/varnish-ingress.yaml
 ```

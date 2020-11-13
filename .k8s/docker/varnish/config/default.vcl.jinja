@@ -3,8 +3,8 @@ vcl 4.0;
 import std;
 
 backend default {
-  .host                   = "nginx";
-  .port                   = "80";
+  .host                   = "{{ app.varnish.backend.host }}";
+  .port                   = "{{ app.varnish.backend.port }}";
   .connect_timeout        = 600s;
   .first_byte_timeout     = 600s;
   .between_bytes_timeout  = 600s;

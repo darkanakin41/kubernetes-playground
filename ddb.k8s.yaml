@@ -12,3 +12,12 @@ docker:
 
 fixuid:
   disabled: true
+
+app:
+  varnish:
+    backend:
+      host: drupal
+      port: 8000
+  php:
+    upstream:
+      host: 127.0.0.1

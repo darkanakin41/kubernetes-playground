@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Ingress
+metadata:
+  name: drupal-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /drupal
+            backend:
+              serviceName: drupal
+              servicePort: 8000
