@@ -11,7 +11,7 @@ local prefix_port(port, output_port = null)= [port_prefix + (if output_port == n
 
 ddb.Compose() {
 	"services": {
-		"nginx": ddb.Build("nginx") + ddb.Image('darkanakin41/kubernetes-playground-nginx')
+		"nginx": ddb.Build("nginx") + ddb.Image('darkanakin41/kubernetes-playground-nginx:latest')
 		    + {
 		        [if ddb.env.is('k8s') then "ports"]: ["8000:80"],
 		        depends_on: ['php-fpm'],
@@ -36,7 +36,7 @@ ddb.Compose() {
                     MYSQL_PASSWORD: 'mysqluser',
 		        }
             },
-		"php-fpm": ddb.Build("php") + ddb.Image('darkanakin41/kubernetes-playground-php')
+		"php-fpm": ddb.Build("php") + ddb.Image('darkanakin41/kubernetes-playground-php:latest')
             + (if ddb.env.is("dev") then ddb.User() else {})
             + (if ddb.env.is("dev") then ddb.XDebug() else {})
 		    + {
@@ -54,14 +54,14 @@ ddb.Compose() {
                     ddb.path.project + "/app:" + web_workdir + ":cached"
                 ],
             },
-		"redis": ddb.Build("redis") + ddb.Image('darkanakin41/kubernetes-playground-redis'),
+		"redis": ddb.Build("redis") + ddb.Image('darkanakin41/kubernetes-playground-redis:latest'),
 //		"solr": ddb.Build("solr:7.3-slim")
 //		    + {
 //                volumes: [
 //                    ddb.path.project + "/.k8s/solr/config/solr/:/opt/solr/server/solr/collection1/conf:rw"
 //                ]
 //            },
-		"varnish": ddb.Build("varnish") + ddb.Image('darkanakin41/kubernetes-playground-varnish')
+		"varnish": ddb.Build("varnish") + ddb.Image('darkanakin41/kubernetes-playground-varnish:latest')
             + (if ddb.env.is('k8s') then ddb.VirtualHost("80", domain, "www") else {})
 		    + {
 		        links: ['nginx:web-backed'],

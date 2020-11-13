@@ -21,7 +21,7 @@ spec:
         name: varnish
     spec:
       containers:
-      - image: darkanakin41/kubernetes-playground-varnish
+      - image: darkanakin41/kubernetes-playground-varnish:latest
         name: varnish
         resources: {}
       restartPolicy: Always
