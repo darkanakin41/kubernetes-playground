@@ -2,6 +2,11 @@ darkanakin41/kubernetes-playground
 ===
 This project have been generated with [darkanakin41/project-toolbox](https://github.com/darkanakin41/project-toolbox)
 
+# Pre-requisite
+In order to compile this project, you need to have 
+[docker-devbox-ddb@>v1.2.3](https://gfi-centre-ouest.github.io/docker-devbox-ddb/) installed.
+
+# Compilation 
 # Procedure
 1. [Install docker](https://docs.docker.com/engine/install/debian/)
 ```shell script
