@@ -51,3 +51,19 @@ kubectl apply -f https://raw.githubusercontent.com/darkanakin41/kubernetes-playg
 kubectl apply -f https://raw.githubusercontent.com/darkanakin41/kubernetes-playground/master/.k8s/kubernetes/drupal-ingress.yaml
 kubectl apply -f https://raw.githubusercontent.com/darkanakin41/kubernetes-playground/master/.k8s/kubernetes/varnish-ingress.yaml
 ```
+
+6. Optionnal: Nginx as reverse proxy
+```
+sudo apt install nginx
+sudo echo "
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        location / {
+                proxy_pass http://$(minikube ip);
+        }
+}
+" > /etc/nginx/sites-enabled/default
+sudo service nginx restart
+```
